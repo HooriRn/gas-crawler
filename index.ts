@@ -16,7 +16,8 @@ const THORChain = axios.create({
 axiosRetry(THORChain, { retries: 3 });
 
 async function fetchGasData () {
-  const timeOfFetch = Date.now()
+  const timeOfFetch = new Date()
+  console.log(`Quering data at ${timeOfFetch.toLocaleDateString()}`)
   console.log('Query Thornode data...')
   const {data: inboundAddresses} = await THORChain.get('inbound_addresses')
   console.log('Got thronode data...')
@@ -27,11 +28,11 @@ async function fetchGasData () {
   const finalData = {
     thorchain: inboundAddresses,
     block_chair: blockChairData,
-    timestamp: timeOfFetch 
+    timestamp: timeOfFetch.getTime() 
   }
 
   const dataString = JSON.stringify(finalData)
-  writeFileSync(`./data/${timeOfFetch}.json`, dataString)
+  writeFileSync(`./data/${timeOfFetch.getTime()}.json`, dataString)
   
   return
 }
