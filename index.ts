@@ -17,7 +17,7 @@ axiosRetry(THORChain, { retries: 3 });
 
 async function fetchGasData () {
   const timeOfFetch = new Date()
-  console.log(`Quering data at ${timeOfFetch.toLocaleDateString()}`)
+  console.log(`Quering data at ${timeOfFetch.toLocaleString()}`)
   console.log('Query Thornode data...')
   const {data: inboundAddresses} = await THORChain.get('inbound_addresses')
   console.log('Got thronode data...')
