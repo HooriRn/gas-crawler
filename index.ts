@@ -40,7 +40,12 @@ async function main() {
   try {
     await fetchGasData()
     setIntervalAsync(async () => {
-      await fetchGasData()
+      try {
+        await fetchGasData()
+      }
+      catch (error: any) {
+        console.error(error.stack)
+      }
     }, 10 * 60 * 1000)
   } catch (error: any) {
     console.error(error.stack)  
